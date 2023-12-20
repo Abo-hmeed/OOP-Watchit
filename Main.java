@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main implements Serializable {
     static Scanner input = new Scanner (System.in);
 
-    public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         AdminList a1 = new AdminList();
 
@@ -16,7 +16,13 @@ public class Main implements Serializable {
         UserList u1 = new UserList ();
         DirectorList d1 = new DirectorList ();
         System.out.println (a1.toString ());
-        IOClass.InputData(a1);
+        try{
+            IOClass.InputData();
+        }
+        catch(IOException e){
+            AdminList.arrAdmin.add(new Admin ("admin", "admin", "", "", "email"));
+            UserList.arr.add(new User ("admin", "admin", "", "", "email"));
+        }
 
 
 
@@ -44,7 +50,7 @@ public class Main implements Serializable {
                     adminExist = a1.adminExist (username, password);
                     userIndex = u1.userExist (username, password);
 
-                    if (userIndex != -1 || adminExist == true) {
+                    if (userIndex != -1 || adminExist) {
                         break;
                     } else {
                         System.out.println ("\t\tinvalid username or password");
@@ -57,18 +63,18 @@ public class Main implements Serializable {
                 userIndex = u1.queryUser ();
             }
 
-            while (adminExist == true) {
+            while (adminExist) {
                 a1.adminGeneralMenu ();
                 choice = input.nextInt ();
                 if (choice == 5)
                     break;
                 else if (choice == 1) {
                     while (true) {
-                        m1.displayAllMovies ();
-                        m1.movieMenu ();
+                        MovieList.displayAllMovies ();
+                        MovieList.movieMenu ();
                         choice = input.nextInt ();
                         if (choice == 1) {
-                            m1.newMovie ();
+                            m1.queryNewMovie();
                             continue;
                         } else if (choice == 2) {
                             System.out.println ("please select one movies to update");
@@ -93,11 +99,11 @@ public class Main implements Serializable {
                 } else if (choice == 2) {
 
                     while (true) {
-                        c1.displayAllActors ();
+                        CastList.displayAllActors ();
                         c1.castMenu ();
                         choice = input.nextInt ();
                         if (choice == 1) {
-                            c1.newCast ();
+                            c1.queryNewCast();
                             continue;
                         } else if (choice == 2) {
                             System.out.println ("please select one cast to update");
@@ -107,7 +113,7 @@ public class Main implements Serializable {
                         } else if (choice == 3) {
                             System.out.println ("please select one actor to remove");
                             int index = input.nextInt ();
-                            c1.deleteCast (index - 1);
+                            c1.delete (CastList.allActors ,index);
                             continue;
                         } else if (choice == 4) {
                             System.out.println ("enter the cast you want to see its details");
@@ -126,7 +132,7 @@ public class Main implements Serializable {
                         d1.directorMenu ();
                         choice = input.nextInt ();
                         if (choice == 1) {
-                            d1.newDirector ();
+                            d1.queryNewDirector();
                             continue;
                         } else if (choice == 2) {
                             System.out.println ("please select one director to update");
@@ -136,7 +142,7 @@ public class Main implements Serializable {
                         } else if (choice == 3) {
                             System.out.println ("please select one director to remove");
                             int index = input.nextInt ();
-                            d1.deleteDirector (index);
+                            d1.delete (DirectorList.directorsList,index);
                             continue;
                         } else if (choice == 4) {
                             System.out.println ("enter the director you want to see its details");
@@ -207,18 +213,18 @@ public class Main implements Serializable {
 
                 } else if (choice == 3) {       // show History
 
-                    u1.arr.get (userIndex).showWatchHistory ();
+                    UserList.arr.get (userIndex).showWatchHistory ();
 
                 } else if (choice == 4) {       // show watch later
 
-                    u1.arr.get (userIndex).showWatchLater ();
+                    UserList.arr.get (userIndex).showWatchLater ();
 
                 } else if (choice == 5) {       // see movie details
 
                     MovieList.displayAllMovies ();
                     System.out.println ("Enter the movie you want to see it's details:");
                     int movieChoice = input.nextInt ();
-                    MovieList.arr.get (movieChoice - 1).displayMovieDetails ();
+                    MovieList.allMovies.get (movieChoice - 1).displayMovieDetails ();
 
                 } else if (choice == 6) {       // search
                     u1.recursiveSearch ();
