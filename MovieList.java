@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class MovieList implements Serializable {
     static Scanner input = new Scanner (System.in);
-    public static ArrayList<Movie> arr = new ArrayList<> ();
+    public static ArrayList<Movie> allMovies = new ArrayList<> ();
 
-    public void newMovie() {
+    public void queryNewMovie() {
         System.out.println ("Fulfill the movie details");
         System.out.println ();
         System.out.println ("enter imdbScore");
@@ -27,19 +27,22 @@ public class MovieList implements Serializable {
         addMovie (m);
     }
 
-    public void addMovie(Movie m) {
-        arr.add (m);
+    public void deleteMovie(int index){
+        allMovies.remove(allMovies.get(index - 1));
+    }
+    public static void addMovie(Movie m) {
+        allMovies.add (m);
     }
 
     public ArrayList<Movie> getArr() {
-        return arr;
+        return allMovies;
     }
 
     public void setArr(ArrayList<Movie> arr) {
-        this.arr = arr;
+        this.allMovies = arr;
     }
 
-    public void movieMenu() {
+    public static void movieMenu() {
         System.out.println ("\t\tplease select on of the operations below");
         System.out.println ();
         System.out.println ("[1] Add movie");
@@ -51,21 +54,18 @@ public class MovieList implements Serializable {
 
     public static void displayAllMovies() {
         System.out.println ("\t\t\t\t welcome to movies");
-        if (arr.isEmpty ()) {
+        if (allMovies.isEmpty ()) {
             System.out.println ("\t\t\t\tthere is no movie right now");
         } else {
-            for (int i = 0; i < arr.size (); i++) {
-                System.out.println ("[" + (i + 1) + "] " + arr.get (i).getTitle ());
+            for (int i = 0; i < allMovies.size (); i++) {
+                System.out.println ("[" + (i + 1) + "] " + allMovies.get (i).getTitle ());
             }
         }
     }
 
-    public void deleteMovie(int index) {
-        arr.remove (arr.get (index - 1));
-    }
 
     public void showMovieDetails(int index) {
-        arr.get (index - 1).displayMovieDetails ();
+        allMovies.get (index - 1).displayMovieDetails ();
     }
 
     public void movieDetailsMenu(int index) {
@@ -88,7 +88,7 @@ public class MovieList implements Serializable {
     }
 
     public void queryGenres(int index) {
-        Movie m1 = arr.get (index - 1);
+        Movie m1 = allMovies.get (index - 1);
         ArrayList<String> arrGenre = new ArrayList<> (m1.getArrGenre ());
         if (arrGenre.isEmpty ()) {
             System.out.println ("\t\tthere is no assigned genres right now");
@@ -117,7 +117,7 @@ public class MovieList implements Serializable {
                 displayAllGenres (arrGenre);
                 int num = input.nextInt ();
                 arrGenre.remove (num - 1);
-                arr.get (index - 1).setArrGenre (arrGenre);
+                allMovies.get (index - 1).setArrGenre (arrGenre);
                 System.out.println ("\t\tRemoved successfully");
 
 
@@ -130,7 +130,7 @@ public class MovieList implements Serializable {
     public void addGenre(int index, ArrayList<String> arrGenre) {
         System.out.println ("\t\tselect one to add");
         System.out.println ();
-        System.out.println ("[1]Drama\t[2]Horror]t[3]Action");
+        System.out.println ("[1]Drama\t[2]Horror\t[3]Action");
         System.out.println ();
         System.out.println ("[4]Comedy\t[5]Historical\t[6]Romance");
         System.out.println ();
@@ -138,31 +138,31 @@ public class MovieList implements Serializable {
         int num = input.nextInt ();
         if (num == 1) {
             arrGenre.add ("Drama");
-            arr.get (index - 1).setArrGenre (arrGenre);
+            allMovies.get (index - 1).setArrGenre (arrGenre);
         } else if (num == 2) {
             arrGenre.add ("Horror");
-            arr.get (index - 1).setArrGenre (arrGenre);
+            allMovies.get (index - 1).setArrGenre (arrGenre);
         } else if (num == 3) {
             arrGenre.add ("Action");
-            arr.get (index - 1).setArrGenre (arrGenre);
+            allMovies.get (index - 1).setArrGenre (arrGenre);
         } else if (num == 4) {
             arrGenre.add ("Comedy");
-            arr.get (index - 1).setArrGenre (arrGenre);
+            allMovies.get (index - 1).setArrGenre (arrGenre);
         } else if (num == 5) {
             arrGenre.add ("Historical");
-            arr.get (index - 1).setArrGenre (arrGenre);
+            allMovies.get (index - 1).setArrGenre (arrGenre);
         } else if (num == 6) {
             arrGenre.add ("Romance");
-            arr.get (index - 1).setArrGenre (arrGenre);
+            allMovies.get (index - 1).setArrGenre (arrGenre);
         } else if (num == 7) {
             arrGenre.add ("Adventure");
-            arr.get (index - 1).setArrGenre (arrGenre);
+            allMovies.get (index - 1).setArrGenre (arrGenre);
         } else if (num == 8) {
             arrGenre.add ("Fantasy");
-            arr.get (index - 1).setArrGenre (arrGenre);
+            allMovies.get (index - 1).setArrGenre (arrGenre);
         } else if (num == 9) {
             arrGenre.add ("Thriller");
-            arr.get (index - 1).setArrGenre (arrGenre);
+            allMovies.get (index - 1).setArrGenre (arrGenre);
         }
 
     }
@@ -176,7 +176,7 @@ public class MovieList implements Serializable {
     }
 
     public void queryLanguages(int index) {
-        Movie m1 = arr.get (index - 1);
+        Movie m1 = allMovies.get (index - 1);
         ArrayList<String> arrLanguages = new ArrayList<> (m1.getArrLanguage ());
 
         if (arrLanguages.size () == 0) {
@@ -210,7 +210,7 @@ public class MovieList implements Serializable {
                 System.out.println ("Enter number of the language to delete it");
                 int choice = input.nextInt ();
                 arrLanguages.remove (choice - 1);
-                arr.get (index - 1).setArrLanguage (arrLanguages);
+                allMovies.get (index - 1).setArrLanguage (arrLanguages);
             } else if (num == 3) {
                 return;
             } else {
@@ -226,7 +226,7 @@ public class MovieList implements Serializable {
         System.out.println ("please write the language that your would to add it");
         String s = input.next ();
         arrLanguages.add (s);
-        arr.get (index - 1).setArrLanguage (arrLanguages);
+        allMovies.get (index - 1).setArrLanguage (arrLanguages);
     }
 
 
@@ -261,19 +261,19 @@ public class MovieList implements Serializable {
             System.out.println ("Enter the title");
             System.out.println ();
             String s = input.next ();
-            arr.get (index - 1).setTitle (s);
+            allMovies.get (index - 1).setTitle (s);
         } else if (number == 2)//ReleaseDate
         {
             System.out.println ("Enter the release date");
             System.out.println ();
             String s = input.next ();
-            arr.get (index - 1).setReleaseDate (s);
+            allMovies.get (index - 1).setReleaseDate (s);
         } else if (number == 3)//RunningTime
         {
             System.out.println ("Enter the running time");
             System.out.println ();
             String s = input.next ();
-            arr.get (index - 1).setRunningTime (s);
+            allMovies.get (index - 1).setRunningTime (s);
         } else if (number == 4)//cast
         {
             queryCast (index);
@@ -291,27 +291,27 @@ public class MovieList implements Serializable {
             System.out.println ("Enter the imdb score");
             System.out.println ();
             int score = input.nextInt ();
-            arr.get (index - 1).setImdbScore (score);
+            allMovies.get (index - 1).setImdbScore (score);
 
         } else if (number == 9)//Country
         {
             System.out.println ("Enter the country");
             System.out.println ();
             String s = input.next ();
-            arr.get (index - 1).setCountry (s);
+            allMovies.get (index - 1).setCountry (s);
         } else if (number == 10)//budget
         {
             System.out.println ("Enter the budget");
             System.out.println ();
             int budget = input.nextInt ();
-            arr.get (index - 1).setBudget (budget);
+            allMovies.get (index - 1).setBudget (budget);
 
         } else if (number == 11)//revnue
         {
             System.out.println ("Enter the revnue");
             System.out.println ();
             int revnue = input.nextInt ();
-            arr.get (index - 1).setRevenue (revnue);
+            allMovies.get (index - 1).setRevenue (revnue);
 
         } else {
             System.out.println ("\t\tinvalid operation");
@@ -324,14 +324,14 @@ public class MovieList implements Serializable {
     }
 
     public void queryCast(int index) {
-        Movie m1 = arr.get (index - 1);
-        ArrayList<Cast> c1 = new ArrayList<> (m1.getArrCast ());
+        Movie m1 = allMovies.get (index - 1);
+        ArrayList<Staff> c1 = new ArrayList<> (m1.getArrCast ());
         int i;
         if (c1.isEmpty ()) {
             System.out.println ("\t\tthere is no cast right now");
 
         } else {
-            for (Cast c : c1) {
+            for (Staff c : c1) {
                 System.out.println ((c1.indexOf (c) + 1) + ") " + c.firstName + " " + c.lastName);
             }
         }
@@ -347,7 +347,7 @@ public class MovieList implements Serializable {
             actorIndex = input.nextInt ();
             c1.add (CastList.allActors.get (actorIndex - 1));
             m1.setArrCast (c1);
-            arr.set (index - 1, m1);
+            allMovies.set (index - 1, m1);
             ArrayList<Movie> actorMovies = new ArrayList<>
                     ( CastList.allActors.get (actorIndex - 1).getMovies ());
             actorMovies.add (m1);
@@ -358,7 +358,7 @@ public class MovieList implements Serializable {
             actorIndex = input.nextInt ();
             c1.remove (c1.get (actorIndex - 1));
             m1.setArrCast (c1);
-            arr.set (index - 1, m1);
+            allMovies.set (index - 1, m1);
         } else {
             System.out.println ("This is an invalid choice");
         }
@@ -366,7 +366,7 @@ public class MovieList implements Serializable {
     }
 
     public void setDirector(int index) {
-        Movie m1 = arr.get (index - 1);
+        Movie m1 = allMovies.get (index - 1);
         String d1 = m1.getDirector ();
         ArrayList<Director> allDirectors = DirectorList.directorsList;
         if (d1 == null) {
@@ -418,9 +418,9 @@ public class MovieList implements Serializable {
 
     public boolean isRate() {
 
-        for (int i = 0; i < MovieList.arr.size (); i++) {
+        for (int i = 0; i < MovieList.allMovies.size (); i++) {
 
-            if(MovieList.arr.get (i).getRateWatchit ()>=1)
+            if(MovieList.allMovies.get (i).getRateWatchit ()>=1)
                 return true;
         }
         return false;
@@ -428,7 +428,7 @@ public class MovieList implements Serializable {
     }
 
     public void displayTopRatedMovies() {
-        if (MovieList.arr.size () == 0) {
+        if (MovieList.allMovies.size () == 0) {
             System.out.println ("\t\tthere is no movies right now");
             System.out.println ();
         } else {
@@ -437,9 +437,9 @@ public class MovieList implements Serializable {
             } else {
                 System.out.println ("\tHere is the top rated movies : ");
                 System.out.println ();
-                if (MovieList.arr.size () <= 3) {
+                if (MovieList.allMovies.size () <= 3) {
                     int i = 1;
-                    for (Movie m : MovieList.arr) {
+                    for (Movie m : MovieList.allMovies) {
                         if (m.getRateWatchit () > 0.0f) {
                             System.out.println ("[" + i + "]" + m.getTitle ());
                             i++;
@@ -448,15 +448,15 @@ public class MovieList implements Serializable {
                 } else {
                     int counter = 0;
                     int index = 0;
-                    for (int i = 0; i < MovieList.arr.size (); i++) {
+                    for (int i = 0; i < MovieList.allMovies.size (); i++) {
 
-                        for (int j = 0; j < MovieList.arr.size (); j++) {
+                        for (int j = 0; j < MovieList.allMovies.size (); j++) {
 
                             if (i == j) {
                                 continue;
                             } else {
-                                if (MovieList.arr.get (i).getRateWatchit () >=
-                                        MovieList.arr.get (j).getRateWatchit ()) {
+                                if (MovieList.allMovies.get (i).getRateWatchit () >=
+                                        MovieList.allMovies.get (j).getRateWatchit ()) {
                                     index = i;
                                     counter++;
 
@@ -468,7 +468,7 @@ public class MovieList implements Serializable {
                         if (counter == 3) //3 movies are displayed
                             break;
                         else {
-                            System.out.println ("[" + counter + "]" + MovieList.arr.get (index).getTitle ());
+                            System.out.println ("[" + counter + "]" + MovieList.allMovies.get (index).getTitle ());
                         }
                     }
 
@@ -480,22 +480,22 @@ public class MovieList implements Serializable {
     }
 
     public void displayRecentMovies() {
-        if (MovieList.arr.size () == 0) {
+        if (MovieList.allMovies.size () == 0) {
             System.out.println ("\t\tthere is no movies right now");
             System.out.println ();
         } else {
             System.out.println ("\tHere is the recent movies : ");
             System.out.println ();
-            if (MovieList.arr.size () <= 3) {
+            if (MovieList.allMovies.size () <= 3) {
                 int i = 1;
-                for (Movie m : MovieList.arr) {
+                for (Movie m : MovieList.allMovies) {
                     System.out.println ("[" + i + "]" + m.getTitle ());
                     i++;
                 }
             } else {
-                for (int i = MovieList.arr.size () - 3; i < MovieList.arr.size (); i++) {
+                for (int i = MovieList.allMovies.size () - 3; i < MovieList.allMovies.size (); i++) {
                     System.out.println ("[" + (i + 1) + "]" +
-                            MovieList.arr.get (i).getTitle ());
+                            MovieList.allMovies.get (i).getTitle ());
                 }
 
             }
@@ -503,7 +503,7 @@ public class MovieList implements Serializable {
     }
 
     public boolean isWatched() {
-        for (Movie m : MovieList.arr) {
+        for (Movie m : MovieList.allMovies) {
             if (m.getViews () > 0) {
                 return true;
             }
@@ -512,7 +512,7 @@ public class MovieList implements Serializable {
     }
 
     public void displayTopWatchedMovies() {
-        if (MovieList.arr.size () == 0) {
+        if (MovieList.allMovies.size () == 0) {
             System.out.println ("\t\tthere is no movies right now");
             System.out.println ();
         } else {
@@ -522,9 +522,9 @@ public class MovieList implements Serializable {
             } else {
                 System.out.println ("\tHere is the top watched movies : ");
                 System.out.println ();
-                if (MovieList.arr.size () <= 3) {
+                if (MovieList.allMovies.size () <= 3) {
                     int i = 1;
-                    for (Movie m : MovieList.arr) {
+                    for (Movie m : MovieList.allMovies) {
                         if (m.getViews () > 0) {
                             System.out.println ("[" + i + "]" + m.getTitle ());
                             i++;
@@ -533,15 +533,15 @@ public class MovieList implements Serializable {
                 } else {
                     int counter = 0;
                     int index = 0;
-                    for (int i = 0; i < MovieList.arr.size (); i++) {
+                    for (int i = 0; i < MovieList.allMovies.size (); i++) {
 
-                        for (int j = 0; j < MovieList.arr.size (); j++) {
+                        for (int j = 0; j < MovieList.allMovies.size (); j++) {
 
                             if (i == j) {
                                 continue;
                             } else {
-                                if (MovieList.arr.get (i).getViews () >=
-                                        MovieList.arr.get (j).getViews ()) {
+                                if (MovieList.allMovies.get (i).getViews () >=
+                                        MovieList.allMovies.get (j).getViews ()) {
                                     counter++;
                                     index = i;
 
@@ -552,7 +552,7 @@ public class MovieList implements Serializable {
                         if (counter == 3) //3 movies are displayed
                             break;
                         else {
-                            System.out.println ("[" + counter + "]" + MovieList.arr.get (index).getTitle ());
+                            System.out.println ("[" + counter + "]" + MovieList.allMovies.get (index).getTitle ());
 
                         }
 
