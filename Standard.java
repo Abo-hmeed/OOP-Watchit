@@ -18,7 +18,6 @@ public class Standard extends Subscription implements Serializable {
     }
 
     public Standard() {
-
     }
 
     public static void addSubscription(Standard sc) {
@@ -43,10 +42,10 @@ public class Standard extends Subscription implements Serializable {
     }
 
     public boolean subDays(int userId) {
-        for (int i = 0; i < arrStandard.size (); i++) {
-            if (arrStandard.get (i).getUserId () == userId) {
+        for (Subscription subscription : arrStandard) {
+            if (subscription.getUserId() == userId) {
                 int difference = Subscription.getDifferenceDays
-                        (arrStandard.get (i).getStartDate ());
+                        (subscription.getStartDate());
                 if (difference <= 30)
                     return true;
                 else
