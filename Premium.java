@@ -14,11 +14,9 @@ public class Premium extends Subscription implements Serializable {
         LocalDateTime currentDateTime = LocalDateTime.now ();
         super.setStartDate (currentDateTime);
         super.getMonth (currentDateTime, PREMIUM_PRICE);
-
     }
 
     public Premium() {
-
     }
 
     public static void addSubscription(Premium sc) {
@@ -31,9 +29,8 @@ public class Premium extends Subscription implements Serializable {
                 arrPremium.remove (i);
                 break;
             }
-
         }
-    }//end of method
+    }
 
     public boolean maxWatch(ArrayList arr) {
         if (arr.size () < Premium.MAX_WATCH) {
@@ -43,10 +40,10 @@ public class Premium extends Subscription implements Serializable {
     }
 
     public boolean subDays(int userId) {
-        for (int i = 0; i < arrPremium.size (); i++) {
-            if (arrPremium.get (i).getUserId () == userId) {
+        for (Subscription subscription : arrPremium) {
+            if (subscription.getUserId() == userId) {
                 int difference = Subscription.getDifferenceDays
-                        (arrPremium.get (i).getStartDate ());
+                        (subscription.getStartDate());
                 if (difference <= 30)
                     return true;
                 else
