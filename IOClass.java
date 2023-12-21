@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class IOClass {
 
-    public static void OutputData(AdminList a) throws IOException {
+    public static void OutputData() throws IOException {
         File file = new File("adminList.txt");
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(AdminList.arrAdmin);
