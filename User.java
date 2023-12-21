@@ -127,11 +127,11 @@ public class User implements Serializable {
                 System.out.println ("sorry, " + UserList.arr.get (userIndex).getUserName ());
                 System.out.println ("you have reached your maximum watching movies");
             } else {
-                MovieList.arr.get (movieIndex).increaseViews ();
-                historyMovies.add (MovieList.arr.get (movieIndex));
+                MovieList.allMovies.get (movieIndex).increaseViews ();
+                historyMovies.add (MovieList.allMovies.get (movieIndex));
                 System.out.println ("\tWatched successfully");
                 UserWatchRecord uwr = new UserWatchRecord (userId1,
-                        MovieList.arr.get (movieIndex).getTitle ());
+                        MovieList.allMovies.get (movieIndex).getTitle ());
                 UserWatchRecordList.addRecord (uwr);
             }
         } else if (UserList.arr.get (userIndex).getSubscription ().equals ("Standard")) {
@@ -143,11 +143,11 @@ public class User implements Serializable {
                 System.out.println ("sorry, " + UserList.arr.get (userIndex).getUserName ());
                 System.out.println ("you have reached your maximum watching movies");
             } else {
-                MovieList.arr.get (movieIndex).increaseViews ();
-                historyMovies.add (MovieList.arr.get (movieIndex));
+                MovieList.allMovies.get (movieIndex).increaseViews ();
+                historyMovies.add (MovieList.allMovies.get (movieIndex));
                 System.out.println ("\tWatched successfully");
                 UserWatchRecord uwr = new UserWatchRecord (userId1,
-                        MovieList.arr.get (movieIndex).getTitle ());
+                        MovieList.allMovies.get (movieIndex).getTitle ());
                 UserWatchRecordList.addRecord (uwr);
             }
         } else if (UserList.arr.get (userIndex).getSubscription ().equals ("Premium")) {
@@ -160,11 +160,11 @@ public class User implements Serializable {
                 System.out.println ("you have reached your maximum watching movies");
 
             } else {
-                MovieList.arr.get (movieIndex).increaseViews ();
-                historyMovies.add (MovieList.arr.get (movieIndex));
+                MovieList.allMovies.get (movieIndex).increaseViews ();
+                historyMovies.add (MovieList.allMovies.get (movieIndex));
                 System.out.println ("\tWatched successfully");
                 UserWatchRecord uwr = new UserWatchRecord (userId1,
-                        MovieList.arr.get (movieIndex).getTitle ());
+                        MovieList.allMovies.get (movieIndex).getTitle ());
                 UserWatchRecordList.addRecord (uwr);
             }
         }
@@ -172,7 +172,7 @@ public class User implements Serializable {
     }
 
     public void watchMovieLater(int movieIndex) {
-        laterMovies.add (MovieList.arr.get (movieIndex));
+        laterMovies.add (MovieList.allMovies.get (movieIndex));
         System.out.println ("movie is added to later movies successfully!");
     }
 
