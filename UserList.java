@@ -219,10 +219,10 @@ public class UserList implements Serializable {
                     System.out.println ("[1] Standard\t[2] Premium");
                     int num2 = input.nextInt ();
                     if (num2 == 1) {
-                        Subscription.updateSubscribtion (id, "Basic", "Standard");
+                        Subscription.updateSubscription (id, "Basic", "Standard");
                         UserList.arr.get (index).setSubscription ("Standard");
                     } else if (num2 == 2) {
-                        Subscription.updateSubscribtion (id, "Basic", "Premium");
+                        Subscription.updateSubscription (id, "Basic", "Premium");
                         UserList.arr.get (index).setSubscription ("Premium");
                     } else {
                         System.out.println ("\tinvalid operation");
@@ -234,10 +234,10 @@ public class UserList implements Serializable {
                     System.out.println ("[1] Basic\t[2] Premium");
                     int num2 = input.nextInt ();
                     if (num2 == 1) {
-                        Subscription.updateSubscribtion (id, "Standard", "Basic");
+                        Subscription.updateSubscription (id, "Standard", "Basic");
                         UserList.arr.get (index).setSubscription ("Basic");
                     } else if (num2 == 2) {
-                        Subscription.updateSubscribtion (id, "Standard", "Premium");
+                        Subscription.updateSubscription (id, "Standard", "Premium");
                         UserList.arr.get (index).setSubscription ("Premium");
                     } else {
                         System.out.println ("\tinvalid operation");
@@ -249,10 +249,10 @@ public class UserList implements Serializable {
                     System.out.println ("[1] Basic\t[2] Standard");
                     int num2 = input.nextInt ();
                     if (num2 == 1) {
-                        Subscription.updateSubscribtion (id, "Premium", "Basic");
+                        Subscription.updateSubscription (id, "Premium", "Basic");
                         UserList.arr.get (index).setSubscription ("Basic");
                     } else if (num2 == 2)
-                        Subscription.updateSubscribtion (id, "Premium", "Standard");
+                        Subscription.updateSubscription (id, "Premium", "Standard");
                     UserList.arr.get (index).setSubscription ("Standard");
                 } else {
                     System.out.println ("\tinvalid operation");
@@ -269,8 +269,5 @@ public class UserList implements Serializable {
                 System.out.println ("\tplease select one of the below operations");
             }
         }
-
     }
-
-
 }
