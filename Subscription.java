@@ -29,10 +29,9 @@ public abstract class Subscription implements Serializable {
     }
 
     public Subscription() {
-    } // no arg constructor
+    }
 
     public Subscription(int userId, String plan) {
-
         this.userId = userId;
         this.plan = plan;
     }
@@ -126,7 +125,7 @@ public abstract class Subscription implements Serializable {
         }
     }
 
-    public static void monthMostRevenue() {
+    public static void monthGreatestRevenue() {
         int maxi = -1;
         int monthNum = 0;
         for (int i = 0; i < 13; i++) {
