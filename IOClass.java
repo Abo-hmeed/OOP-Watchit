@@ -28,6 +28,21 @@ public class IOClass {
         ois = new ObjectInputStream(new FileInputStream(file));
         DirectorList.directorsList = (ArrayList<Director>) ois.readObject();
         ois.close();
+
+        file = new File("basicList.txt");
+        ois = new ObjectInputStream(new FileInputStream(file));
+        Basic.arrBasic = (ArrayList<Subscription>) ois.readObject();
+        ois.close();
+
+        file = new File("standardList.txt");
+        ois = new ObjectInputStream(new FileInputStream(file));
+        Standard.arrStandard = (ArrayList<Subscription>) ois.readObject();
+        ois.close();
+
+        file = new File("premiumList.txt");
+        ois = new ObjectInputStream(new FileInputStream(file));
+        Premium.arrPremium = (ArrayList<Subscription>) ois.readObject();
+        ois.close();
     }
 
     //Outputs data from program into files
@@ -55,6 +70,21 @@ public class IOClass {
         file = new File("directorList.txt");
         oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(DirectorList.directorsList);
+        oos.close();
+
+        file = new File("basicList.txt");
+        oos = new ObjectOutputStream(new FileOutputStream(file));
+        oos.writeObject(Basic.arrBasic);
+        oos.close();
+
+        file = new File("StandardList.txt");
+        oos = new ObjectOutputStream(new FileOutputStream(file));
+        oos.writeObject(Standard.arrStandard);
+        oos.close();
+
+        file = new File("premiumList.txt");
+        oos = new ObjectOutputStream(new FileOutputStream(file));
+        oos.writeObject(Premium.arrPremium);
         oos.close();
     }
 }
