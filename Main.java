@@ -20,8 +20,8 @@ public class Main implements Serializable {
             IOClass.InputData();
         }
         catch(IOException e){
-            AdminList.arrAdmin.add(new Admin ("admin", "admin", "", "", "email"));
-            UserList.arr.add(new User ("admin", "admin", "", "", "email"));
+            System.out.println("A problem happened while retrieving data");
+            System.exit(1);
         }
 
 
@@ -265,6 +265,12 @@ public class Main implements Serializable {
 
 
         }
-        IOClass.OutputData(a1);
+        try {
+            IOClass.OutputData();
+        }
+        catch (IOException e) {
+            System.out.println("A problem happened while saving data");
+        }
+        
     }
 }
