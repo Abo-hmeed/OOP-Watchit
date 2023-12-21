@@ -6,21 +6,19 @@ public class AdminList implements Serializable {
     static Scanner input = new Scanner (System.in);
     static ArrayList<Admin> arrAdmin = new ArrayList<> ();
 
-
+//Checks whether an admin is registered
     public boolean adminExist(String username, String password) {
-        for (Admin ad : arrAdmin) {
-            if (ad.getUsername ().equals (username) && ad.getPassword ().equals (password))
+        for (Admin a : arrAdmin) {
+            if (a.getUsername ().equals (username) && a.getPassword ().equals (password))
                 return true;
 
         }
         return false;
     }
 
+    //Menu that appears to admins at start
     public void adminGeneralMenu() {
-        System.out.println ();
-        System.out.println ();
-        System.out.println ();
-        System.out.println ();
+        System.out.println ("\n\n\n\n");
         System.out.println ("\t\t[1] Movies");
         System.out.println ("\t\t[2] Cast");
         System.out.println ("\t\t[3] Directors");
@@ -29,24 +27,22 @@ public class AdminList implements Serializable {
 
     }
 
+    //Admin settings menu
     public void adminMenu() {
 
-        System.out.println ("\t\there are the admin funcionalities");
-        System.out.println ("\tselect one of the operations below");
-        System.out.println ();
-        System.out.println ("[1] New admin\t[2] See the most month had revnue");
+        System.out.println ("\t\there are the admin functionalities");
+        System.out.println ("\tselect one of the operations below\n");
+        System.out.println ("[1] New admin\t[2] See the most month had revenue");
         System.out.println ("[3] Most subscribed plan\t[4] See all admins");
         System.out.println ("[5] Update admin\t[6] Delete admin");
         System.out.println ("[7] See admin details\t[8] Back");
 
     }
 
+    //Only displays admins
     public void displayAllAdmins() {
         while (true) {
             System.out.println ("\t\tAll admins of the system");
-            for (int i = 0; i < arrAdmin.size (); i++) {
-                System.out.println ("[" + (i + 1) + "]" + arrAdmin.get (i).getUsername ());
-            }
             System.out.println ("select back to return again");
             System.out.println ("[1] Back");
             int choice = input.nextInt ();
@@ -55,35 +51,33 @@ public class AdminList implements Serializable {
             else {
                 System.out.println ("\t\t invalid operation");
                 System.out.println ("\tplease select only the operation below");
-                continue;
             }
         }
     }
 
-    public void diplayAdmins()
+    //Displays admins to do something
+    public void displayAdmins()
     {
         System.out.println ("\t\tAll admins of the system");
-        for (int i = 0; i < arrAdmin.size (); i++) {
-            System.out.println ("[" + (i + 1) + "]" + arrAdmin.get (i).getUsername ());
-        }
+        AdminList.arrAdmin.stream()
+                .forEach(a -> System.out.println("[" + a.getId() + "]" + a.getUsername()));
+
     }
 
     public void updateAdminMenu(int index)
     {  while(true) {
         //username password firstName lastName email
-        System.out.println ("\tWhich one of informations do you want to update it");
-        System.out.println ();
+        System.out.println ("\tWhat information do you want to update it\n");
         System.out.println ("[1] Username\t[2] Password");
         System.out.println ("[3] First name\t[4] Last name");
         System.out.println ("[5] Email\t[6]back");
         int choice = input.nextInt ();
         if (choice==6)
             break;
-        else if(choice<1 && choice>6)
+        else if(choice<1 || choice>6)
         {
             System.out.println ("\t\tinvalid operation");
-            System.out.println ("\tselect one of the operations below");
-            System.out.println ();
+            System.out.println ("\tselect one of the operations below\n");
         }
         else
         {
@@ -130,8 +124,7 @@ public class AdminList implements Serializable {
 
 
     public void newAdmin() {
-        System.out.println ("please fullfill the required details");
-        System.out.println ();
+        System.out.println ("please fulfill the required details\n");
         System.out.println ("Enter username");
         String username = input.next ();
         System.out.println ("Enter password");
