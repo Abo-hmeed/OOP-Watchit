@@ -82,8 +82,7 @@ public class Admin implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                '}');
-        System.out.println ();
+                '}' + "\n");
         System.out.println ("\t\tselect back to return");
         System.out.println ("\t[1] Back");
         int num =input.nextInt();
@@ -96,5 +95,4 @@ public class Admin implements Serializable {
         }
     }
     }
-
 }
