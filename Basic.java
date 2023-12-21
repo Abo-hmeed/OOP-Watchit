@@ -40,10 +40,10 @@ public class Basic extends Subscription implements Serializable {
     }
 
     public boolean subDays(int userId) {
-        for (int i = 0; i < arrBasic.size (); i++) {
-            if (arrBasic.get (i).getUserId () == userId) {
-                int differnce = Subscription.getDifferenceDays (arrBasic.get (i).getStartDate ());
-                if (differnce <= 30) return true;
+        for (Subscription subscription : arrBasic) {
+            if (subscription.getUserId() == userId) {
+                int difference = Subscription.getDifferenceDays(subscription.getStartDate());
+                if (difference <= 30) return true;
                 else break;
             }
         }
