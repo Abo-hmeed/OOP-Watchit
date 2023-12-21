@@ -10,7 +10,6 @@ public class Main implements Serializable {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         AdminList a1 = new AdminList();
-
         MovieList m1 = new MovieList();
         CastList c1 = new CastList ();
         UserList u1 = new UserList ();
@@ -160,23 +159,23 @@ public class Main implements Serializable {
                         if (choice == 1)
                             a1.newAdmin ();
                         else if (choice == 2) {
-                            Subscription.monthMostRevenue ();
+                            Subscription.monthGreatestRevenue ();
                         } else if (choice == 3) {
                             Subscription.mostSubscribedPlan ();
                         } else if (choice == 4) {
                             a1.displayAllAdmins ();
                         } else if (choice == 5) {
-                            a1.diplayAdmins ();
+                            a1.displayAdmins ();
                             System.out.println ("\t\tselect an admin to update");
                             int num = input.nextInt ();
                             a1.updateAdminMenu (num);
                         } else if (choice == 6) {
-                            a1.diplayAdmins ();
+                            a1.displayAdmins ();
                             System.out.println ("\t\tselect an admin to delete");
                             int num = input.nextInt ();
                             a1.deleteAdmin (num);
                         } else if (choice == 7) {
-                            a1.diplayAdmins ();
+                            a1.displayAdmins ();
                             System.out.println ("\t\tselect an admin to see his/her details");
                             int num = input.nextInt ();
                             a1.arrAdmin.get (num - 1).adminDetails ();
@@ -271,6 +270,6 @@ public class Main implements Serializable {
         catch (IOException e) {
             System.out.println("A problem happened while saving data");
         }
-        
+
     }
 }
