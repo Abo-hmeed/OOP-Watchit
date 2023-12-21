@@ -132,7 +132,7 @@ public class Main implements Serializable {
                         d1.directorMenu ();
                         choice = input.nextInt ();
                         if (choice == 1) {
-                            d1.queryNewDirector();
+                            d1.newDirector();
                             continue;
                         } else if (choice == 2) {
                             System.out.println ("please select one director to update");
@@ -142,7 +142,7 @@ public class Main implements Serializable {
                         } else if (choice == 3) {
                             System.out.println ("please select one director to remove");
                             int index = input.nextInt ();
-                            d1.delete (DirectorList.directorsList,index);
+                            d1.deleteDirector (index);
                             continue;
                         } else if (choice == 4) {
                             System.out.println ("enter the director you want to see its details");
@@ -160,9 +160,9 @@ public class Main implements Serializable {
                         if (choice == 1)
                             a1.newAdmin ();
                         else if (choice == 2) {
-                            Subscription.monthMostRevnue ();
+                            Subscription.monthMostRevenue ();
                         } else if (choice == 3) {
-                            Subscription.mostSuscribedPlan ();
+                            Subscription.mostSubscribedPlan ();
                         } else if (choice == 4) {
                             a1.displayAllAdmins ();
                         } else if (choice == 5) {
