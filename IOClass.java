@@ -6,7 +6,7 @@ public class IOClass {
     public static void OutputData(AdminList a) throws IOException {
         File file = new File("adminList.txt");
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-        oos.writeObject(a.arrAdmin);
+        oos.writeObject(AdminList.arrAdmin);
         oos.close();
 
         file = new File("movieList.txt");
